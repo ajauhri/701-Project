@@ -1,0 +1,38 @@
+
+Sentiment Analysis of IMDB Movie reviews
+
+A basic Naive Bayes classifier using many NLP preprocessing techniques is implemented.
+
+The training set details
+
+ 2500 positive reviews
+2500 negative reviews
+
+Test set used:
+ 2500 positive reviews
+ 2500 negative reviews
+
+Currently only Bag of Words features with basic pre-processing techniques are used , but a pretty decent accuracy of 81.2 %.
+
+Additional Features will be added soon
+
+1) POS Tag based features
+2) TF_IDF features
+3) Sentiment Lexicon polarity scores
+4) Co-occurence Features
+
+Usage:
+Run python classify_sentiment.py
+
+Requirements: 
+
+1) NLTK -
+
+sudo easy_install nltk
+
+2) Use NLTK downloader to get the corpora needed in the code 
+
+ipython
+import nltk
+nltk.download()
+
