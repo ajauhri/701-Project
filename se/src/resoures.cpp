@@ -5,8 +5,10 @@
 #include<resources.hpp>
 
 using namespace std;
+using namespace rapidxml;
 
-std::string readf(const char *path)
+std::string 
+readf(const char *path)
 {
     string buffer;
     ifstream file (path);
@@ -23,5 +25,36 @@ std::string readf(const char *path)
     
     return buffer;
 }
+
+int 
+get_uid(xml_document<> *doc)
+{
+    int uid;
+    xml_attribute<> *attr =  doc->first_node()->first_attribute("OwnerUserId");
+    if(attr == 0)
+        uid = -1;
+    else 
+        uid = atoi(attr->value());
+    return uid;
+}
+
+vector<string>
+s_tags(char *s)
+{
+    vector<string> tags;
+    string tag;
+
+    for (; *s!='\0';s++) {
+        if(*s == '<')
+            tag.clear();
+        else if(*s == '>') 
+            tags.push_back(tag);
+        else
+            tag.push_back(*s);
+    }
+    return tags;
+}
+
+
 
 
