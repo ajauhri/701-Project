@@ -2,3 +2,7 @@
 *~
 sentiment_analysis/sample_test/
 sentiment_analysis/sample_train/
+se/data
+se/obj
+se/701
+se/*.xml
