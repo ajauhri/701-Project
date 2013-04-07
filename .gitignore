@@ -1,0 +1,4 @@
+*.pyc
+*~
+sentiment_analysis/sample_test/
+sentiment_analysis/sample_train/
