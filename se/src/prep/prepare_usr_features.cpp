@@ -13,6 +13,8 @@ ifstream answers("./data/answers_u_sorted", fstream::out);
 ifstream questions("./data/questions", fstream::out);
 
 ofstream usr_matrix("./data/usr_matrix", fstream::in | fstream::trunc);
+ofstream top_tags("./data/top_tags", fstream::in | fstream::trunc);
+
 
 map<string, int> all_tags;              //all tags with their relative position
 map<string, string> q;              //load all questions with tags here
@@ -36,15 +38,16 @@ void
 read_tags()
 {
     string line;
-    int count = f_size;
-    features = (int*) malloc(sizeof(int) * count);
+    int count = 0;
+    features = (int*) malloc(sizeof(int) * f_size);
 
-    while(count--) {
+    while(count < f_size) {
         getline(sorted_tags, line);
         stringstream ss(line);
         string cell;
         getline(ss, cell, ',');
-        all_tags.insert(pair<string, int>(cell, count));
+        all_tags.insert(pair<string, int>(cell, count++));
+        top_tags<<cell<<"\n";
     }
 }
 
@@ -122,6 +125,7 @@ close_fds()
     answers.close();
     questions.close();
     usr_matrix.close();
+    top_tags.close();
 }
 
 
