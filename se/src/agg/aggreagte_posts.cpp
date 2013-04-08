@@ -9,9 +9,9 @@
 using namespace std;
 using namespace rapidxml;
 
-ofstream ques_fd("../se-data/questions", fstream::app);
-ofstream ans_fd("../se-data/answers", fstream::app);
-ofstream uniq_tags("../se-data/tags", fstream::app);
+ofstream ques_fd("./data/questions", fstream::in | fstream::trunc);
+ofstream ans_fd("./data/answers", fstream::in | fstream::trunc);
+ofstream uniq_tags("./data/tags", fstream::in | fstream::trunc);
 
 map<string, int> tag_counter;
 
@@ -27,7 +27,7 @@ proc_question(string s)
     int id = atoi(doc.first_node()->first_attribute("Id")->value());
     int uid = get_uid(&doc); 
     int score = atoi(doc.first_node()->first_attribute("Score")->value());
-    ques_fd<<id<<','<<uid<<','<<score;
+    ques_fd<<id<<','<<uid<<','<<score<<',';
     
     vector<string> tags = s_tags(doc.first_node()->first_attribute("Tags")->value());
     
@@ -35,7 +35,7 @@ proc_question(string s)
         throw "No tags in question";
 
     for (vector<string>::iterator it=tags.begin(); it!=tags.end(); ++it) {
-        ques_fd<<','<<*it;
+        ques_fd<<*it<<',';
         if(tag_counter.find(*it) == tag_counter.end())
             tag_counter.insert(pair<string, int>(*it, 1));
         else
@@ -57,7 +57,7 @@ proc_answer(string s)
     int uid = get_uid(&doc);
     int score = atoi(doc.first_node()->first_attribute("Score")->value());
 
-    ans_fd<<pid<<','<<uid<<','<<score<<'\n';
+    ans_fd<<pid<<','<<uid<<','<<score<<","<<'\n';
 }
 
 
@@ -105,7 +105,7 @@ void
 handle_tags()
 {
     for(map<string, int>::iterator it = tag_counter.begin(); it!=tag_counter.end(); ++it)
-        uniq_tags<<it->first<<','<<it->second<<'\n';
+        uniq_tags<<it->first<<','<<it->second<<','<<'\n';
     uniq_tags.close();
 }
 
@@ -122,5 +122,7 @@ main(int argc, char **argv)
     
     ques_fd.close();
     ans_fd.close();
+
+    system("./scripts"); 
     return 0;
 }

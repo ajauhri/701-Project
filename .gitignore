@@ -4,6 +4,7 @@ sentiment_analysis/sample_test/
 sentiment_analysis/sample_train/
 se/data
 se/obj
-se/701
+se/aggregate
+se/prepare
 se/*.xml
 *.swp

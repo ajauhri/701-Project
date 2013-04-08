@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+#for creating sorted tag list
+sort -t\, -rnk 2,2 data/tags > data/tags_sorted
+
+#for sorting ansers using usr id
+sort -t\, -rnk 2,2 data/answers > data/answers_u_sorted
