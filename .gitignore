@@ -8,3 +8,4 @@ se/aggregate
 se/prepare
 se/*.xml
 *.swp
+*.o
